@@ -11,30 +11,30 @@ import models.Rando;
 
 /**
  * Manager de l'application représenté par un EJB stateless. Contient nottemment
- * les méthodes CRUD des personnes
+ * les méthodes CRUD des randonnées
  *
  */
 @Stateless
-public class PersonneDAO {
+public class RandoDAO {
 
 	@PersistenceContext(unitName = "myData")
 	EntityManager em;
 
 	/**
-	 * Retourne la liste des personnes de la base de donnée
+	 * Retourne la liste des randonnées de la base de donnée
 	 * 
-	 * @return la liste des personnes
+	 * @return la liste des randonnées
 	 */
-	public List<Personne> getAllPersons() {
-		return em.createQuery("Select p From Personne p", Personne.class).getResultList();
+	public List<Rando> getAllRandos() {
+		return em.createQuery("Select r From Rando p", Rando.class).getResultList();
 	}
-
-	public void save(Personne p) {
-		if(p.getId() == null) {
-			em.persist(p);
+	
+	public void save(Rando r) {
+		if(r.getId() == null) {
+			em.persist(r);
 		}
 		else {
-			em.merge(p);
+			em.merge(r);
 		}
 	}
 }

@@ -40,11 +40,11 @@ public class Rando {
 
 	@Basic(optional = false)
 	@Column(nullable = false)
-	private String longitude;
-
+	private String latitude;
+	
 	@Basic(optional = false)
 	@Column(nullable = false)
-	private String latitude;
+	private String longitude;
 
 	@ManyToMany(mappedBy = "randos")
 	private List<Personne> persons;
@@ -53,26 +53,26 @@ public class Rando {
 
 	}
 
-	public Rando(String name, String description, String ville, Date dateDepart, String longitude, String latitude) {
+	public Rando(String name, String description, String ville, Date dateDepart, String latitude, String longitude) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.ville = ville;
 		this.dateDepart = dateDepart;
-		this.longitude = longitude;
 		this.latitude = latitude;
+		this.longitude = longitude;
 		this.persons = new ArrayList<Personne>();
 	}
 
-	public Rando(String name, String description, String ville, Date dateDepart, String longitude, String latitude,
+	public Rando(String name, String description, String ville, Date dateDepart, String latitude, String longitude,
 			List<Personne> persons) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.ville = ville;
 		this.dateDepart = dateDepart;
-		this.longitude = longitude;
 		this.latitude = latitude;
+		this.longitude = longitude;
 		this.persons = persons;
 	}
 
