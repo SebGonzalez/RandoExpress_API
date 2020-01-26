@@ -41,19 +41,6 @@ public class PersonneDAO {
 		}
 	}
 
-	public boolean save(Personne p) {
-		try {
-			if (p.getId() == null) {
-				em.persist(p);
-			} else {
-				em.merge(p);
-			}
-		} catch (ConstraintViolationException e) {
-			return false;
-		}
-		return true;
-	}
-
 	public Personne getPersonByUuid(String uuid) {
 		try {
 			return em.createQuery("Select p From Personne p Where uuid = :uuid", Personne.class)
@@ -67,5 +54,18 @@ public class PersonneDAO {
 		Personne p = getPersonById(id);
 		if(p != null)
 			em.remove(p);
+	}
+	
+	public boolean save(Personne p) {
+		try {
+			if (p.getId() == null) {
+				em.persist(p);
+			} else {
+				em.merge(p);
+			}
+		} catch (ConstraintViolationException e) {
+			return false;
+		}
+		return true;
 	}
 }

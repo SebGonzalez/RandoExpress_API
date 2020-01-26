@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import models.Personne;
@@ -27,6 +28,30 @@ public class RandoDAO {
 	 */
 	public List<Rando> getAllRandos() {
 		return em.createQuery("Select r From Rando r", Rando.class).getResultList();
+	}
+	
+	public Rando getRandoById(Long id) {
+		try {
+			return em.createQuery("Select r From Rando r Where id = :id", Rando.class).setParameter("id", id)
+					.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
+	public List<Rando> getRandosByVille(String ville) {
+		try {
+			return em.createQuery("Select r From Rando r Where ville = :ville", Rando.class).setParameter("ville", ville)
+					.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
+	public void remove(Long id) {
+		Rando r = getRandoById(id);
+		if(r != null)
+			em.remove(r);
 	}
 	
 	public void save(Rando r) {

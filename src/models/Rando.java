@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -46,7 +45,11 @@ public class Rando {
 	@Basic(optional = false)
 	@Column(nullable = false)
 	private String longitude;
-
+	
+	@Basic(optional = false)
+	@OneToOne
+	private Personne owner;
+	
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Personne> persons;
 
@@ -54,7 +57,7 @@ public class Rando {
 
 	}
 
-	public Rando(String name, String description, String ville, String dateDepart, String latitude, String longitude) {
+	public Rando(String name, String description, String ville, String dateDepart, String latitude, String longitude, Personne owner) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -62,6 +65,7 @@ public class Rando {
 		this.dateDepart = dateDepart;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.owner = owner;
 		this.persons = new ArrayList<Personne>();
 	}
 
@@ -131,6 +135,14 @@ public class Rando {
 
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
+	}
+
+	public Personne getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Personne owner) {
+		this.owner = owner;
 	}
 
 	public List<Personne> getPersons() {
