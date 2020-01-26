@@ -26,7 +26,7 @@ public class RandoDAO {
 	 * @return la liste des randonnées
 	 */
 	public List<Rando> getAllRandos() {
-		return em.createQuery("Select r From Rando p", Rando.class).getResultList();
+		return em.createQuery("Select r From Rando r", Rando.class).getResultList();
 	}
 	
 	public void save(Rando r) {

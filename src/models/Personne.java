@@ -1,6 +1,5 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -9,7 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Personne {
@@ -25,9 +25,8 @@ public class Personne {
 	private String firstName;
 	@Basic(optional = false)
 	@Column(nullable = false, unique=true)
+	@JsonIgnore
 	private String uuid;
-	@ManyToMany
-	private List<Rando> randos;
 	
 	public Personne() {
 		
@@ -38,7 +37,6 @@ public class Personne {
 		this.name = name;
 		this.firstName = firstName;
 		this.uuid = uuid;
-		this.randos = new ArrayList<Rando>();
 	}
 	
 	public Personne(String name, String firstName, String uuid, List<Rando> randos) {
@@ -46,7 +44,6 @@ public class Personne {
 		this.name = name;
 		this.firstName = firstName;
 		this.uuid = uuid;
-		this.randos = randos;
 	}
 
 	public Long getId() {
@@ -78,14 +75,9 @@ public class Personne {
 		this.uuid = uuid;
 	}
 	
-	public List<Rando> getRandos() {
-		return randos;
+	@Override
+	public String toString() {
+		return id + " " + name + " " + firstName + " " + uuid;
 	}
-
-	public void setRandos(List<Rando> randos) {
-		this.randos = randos;
-	}
-	
-	
 	
 }

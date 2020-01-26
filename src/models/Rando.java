@@ -1,20 +1,22 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement(name = "rando")
 public class Rando {
 
 	@Id
@@ -35,8 +37,7 @@ public class Rando {
 
 	@Basic(optional = false)
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
-	private Date dateDepart;
+	private String dateDepart;
 
 	@Basic(optional = false)
 	@Column(nullable = false)
@@ -46,14 +47,14 @@ public class Rando {
 	@Column(nullable = false)
 	private String longitude;
 
-	@ManyToMany(mappedBy = "randos")
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Personne> persons;
 
 	public Rando() {
 
 	}
 
-	public Rando(String name, String description, String ville, Date dateDepart, String latitude, String longitude) {
+	public Rando(String name, String description, String ville, String dateDepart, String latitude, String longitude) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -64,7 +65,7 @@ public class Rando {
 		this.persons = new ArrayList<Personne>();
 	}
 
-	public Rando(String name, String description, String ville, Date dateDepart, String latitude, String longitude,
+	/*public Rando(String name, String description, String ville, Date dateDepart, String latitude, String longitude,
 			List<Personne> persons) {
 		super();
 		this.name = name;
@@ -74,7 +75,7 @@ public class Rando {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.persons = persons;
-	}
+	}*/
 
 	public Long getId() {
 		return id;
@@ -108,11 +109,11 @@ public class Rando {
 		this.ville = ville;
 	}
 
-	public Date getDateDepart() {
+	public String getDateDepart() {
 		return dateDepart;
 	}
 
-	public void setDateDepart(Date dateDepart) {
+	public void setDateDepart(String dateDepart) {
 		this.dateDepart = dateDepart;
 	}
 
@@ -138,6 +139,16 @@ public class Rando {
 
 	public void setPersons(List<Personne> persons) {
 		this.persons = persons;
+	}
+	
+	public void addPerson(Personne p) {
+		persons.add(p);
+	}
+	
+	@Override
+	public String toString() {
+		System.out.println("ok");
+		return id + " " + name + " " + description + " " + ville + " " + dateDepart + " " + longitude + " " + latitude + " " + persons;
 	}
 
 }
