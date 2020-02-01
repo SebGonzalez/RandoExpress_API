@@ -7,6 +7,7 @@ Personnes :
 
 - GET /RandoExpress_API/ws/rest/personnes (retourne la liste des personnes de l'application)
 
+```JSON
 [
     {
         "firstName": "Sébastien",
@@ -21,15 +22,18 @@ Personnes :
         "uuid": "UID2"
     }
 ]
+```
 
 - GET /RandoExpress_API/ws/rest/personne/id/2 (retourne la personne correspondant à l'id indiqué)
 
+```JSON
 {
     "firstName": "Vadym",
     "name": "Vadym",
     "id": 2,
     "uuid": "UID2"
 }
+```
 
 - POST /RandoExpress_API/ws/rest/personne (créer une personne)
 
@@ -41,6 +45,7 @@ Randonnées :
 
 - GET /RandoExpress_API/ws/rest/randos (retourne la liste des randonnées de l'application)
 
+```JSON
 [
     {
         "owner": {
@@ -82,9 +87,11 @@ Randonnées :
         "longitude": "5.370514"
     }
 ]
+```
 
 - GET /RandoExpress_API/ws/rest/rando/id/4 (retourne la randonnée correspondant à l'id indiqué)
 
+```JSON
 {
     "owner": {
         "firstName": "Sébastien",
@@ -101,6 +108,7 @@ Randonnées :
     "dateDepart": "20/03/2020",
     "longitude": "5.370514"
 }
+```
 
 - GET /RandoExpress_API/ws/rest/rando/ville/{ville} (retourne les randonnées se situant dans la ville indiqué)
 
