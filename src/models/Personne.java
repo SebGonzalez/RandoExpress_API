@@ -25,26 +25,23 @@ public class Personne {
 	private String firstName;
 	@Basic(optional = false)
 	@Column(nullable = false, unique=true)
-	@JsonIgnore
-	private String uuid;
+	private String mail;
+	@Basic(optional = false)
+	private String password;
+	
 	
 	public Personne() {
 		
 	}
 
-	public Personne(String name, String firstName, String uuid) {
+	public Personne(String name, String firstName, String mail, String password) {
 		super();
 		this.name = name;
 		this.firstName = firstName;
-		this.uuid = uuid;
+		this.mail = mail;
+		this.password = password;
 	}
-	
-	public Personne(String name, String firstName, String uuid, List<Rando> randos) {
-		super();
-		this.name = name;
-		this.firstName = firstName;
-		this.uuid = uuid;
-	}
+
 
 	public Long getId() {
 		return id;
@@ -67,17 +64,25 @@ public class Personne {
 		this.firstName = firstName;
 	}
 
-	public String getUuid() {
-		return uuid;
+	public String getMail() {
+		return mail;
 	}
 
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	@Override
 	public String toString() {
-		return id + " " + name + " " + firstName + " " + uuid;
+		return id + " " + name + " " + firstName + " " + mail ;
 	}
 	
 }

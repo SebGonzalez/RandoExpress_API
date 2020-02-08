@@ -41,10 +41,10 @@ public class PersonneDAO {
 		}
 	}
 
-	public Personne getPersonByUuid(String uuid) {
+	public Personne getPersonByMail(String mail) {
 		try {
-			return em.createQuery("Select p From Personne p Where uuid = :uuid", Personne.class)
-					.setParameter("uuid", uuid).getSingleResult();
+			return em.createQuery("Select p From Personne p Where mail = :mail", Personne.class)
+					.setParameter("mail", mail).getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
