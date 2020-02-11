@@ -28,9 +28,9 @@ public class InitializeListner implements ServletContextListener {
     	if(personneDAO.getAllPersons().size() == 0) {
     		System.out.println("INITIALIZE BD");
     		
-    		Personne p1 = new Personne("Lamblino", "Sébastien", "UID");
+    		Personne p1 = new Personne("Lamblino", "Sébastien", "lamblino@hotmail.fr", "azerty");
     		personneDAO.save(p1);
-    		Personne p2 = new Personne("Vadym", "Vadym", "UID2");
+    		Personne p2 = new Personne("Vadym", "Vadym", "vadym@android.fr", "azerty");
     		personneDAO.save(p2);
     		
     		Rando r1 = new Rando("Calanque Luminy", "Magnifique randonné dans les calanques de Marseille", "Marseille", "20/02/2020", "43.232230", "5.435990", p1);

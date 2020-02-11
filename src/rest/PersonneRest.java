@@ -16,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import dao.PersonneDAO;
+import filters.WithMyFilter;
 import models.Personne;
 
 @Path("/rest")
@@ -49,10 +50,10 @@ public class PersonneRest {
 	}
     
     @GET
-	@Path("personne/uuid/{uuid}")
+	@Path("personne/mail/{mail}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response getPersonByUuid(@PathParam("uuid") String uuid) {
-    	Personne p = personne.getPersonByUuid(uuid);
+	public Response getPersonByMail(@PathParam("mail") String mail) {
+    	Personne p = personne.getPersonByMail(mail);
     	if(p != null) {
     		return Response.ok(p).build();
     	}
