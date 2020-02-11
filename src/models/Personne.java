@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Personne {
 
@@ -25,7 +23,6 @@ public class Personne {
 	private String firstName;
 	@Basic(optional = false)
 	@Column(nullable = false, unique=true)
-	@JsonIgnore
 	private String uuid;
 	
 	public Personne() {
