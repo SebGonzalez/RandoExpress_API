@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.HttpMethod;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
@@ -26,6 +28,7 @@ public class JWTFilter implements ContainerRequestFilter {
 
 		System.out.println(ct.getUriInfo().getPath());
 		if(ct.getUriInfo().getPath().contains("auth")) return;
+		if(ct.getUriInfo().getPath().contains("personne") && ct.getMethod().equals(HttpMethod.POST)) return;
 		
 		boolean ok = false;
 		Map<String, List<String>> headrs = ct.getHeaders();
@@ -46,14 +49,15 @@ public class JWTFilter implements ContainerRequestFilter {
 					DecodedJWT jwt = verifier.verify(token);
 				} catch (JWTVerificationException exception) {
 					System.out.println("BAD request : " + exception.getMessage());
-					ct.abortWith(Response.status(Response.Status.BAD_REQUEST).build());
+					ct.abortWith(Response.status(Response.Status.BAD_REQUEST).entity("{ \"message\" : \"Token invalide\" }")
+							.type(MediaType.APPLICATION_JSON).build());
 				}
 				break;
 			}
-
 		}
 		if(!ok)
-			ct.abortWith(Response.status(Response.Status.BAD_REQUEST).build());
+			ct.abortWith(Response.status(Response.Status.BAD_REQUEST).entity("{ \"message\" : \"Token inexistant\" }")
+					.type(MediaType.APPLICATION_JSON).build());
 
 	}
 

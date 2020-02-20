@@ -18,6 +18,7 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import dao.PersonneDAO;
 import dao.RandoDAO;
 import models.Personne;
 import models.Rando;
@@ -27,6 +28,8 @@ public class RandoRest {
 
 	@EJB
 	RandoDAO randoDAO;
+	@EJB
+	PersonneDAO personneDAO;
 
 	@GET
 	@Path("randos")
@@ -71,5 +74,47 @@ public class RandoRest {
 	@Path("rando/{id}")
 	public void deleteRando(@PathParam("id") String id) {
 		randoDAO.remove(Long.parseLong(id));
+	}
+	
+	@POST
+	@Path("rando/{id}/inscription/{mail}")
+	public Response inscription(@PathParam("id") String id, @PathParam("mail") String mail) {
+		Rando r = randoDAO.getRandoById(Long.parseLong(id));
+		if (r == null) {
+			return Response.status(404).entity("{ \"message\" : \"rando not found\" }")
+					.type(MediaType.APPLICATION_JSON).build();
+		}
+		Personne p = personneDAO.getPersonByMail(mail);
+		if (p == null) {
+			return Response.status(404).entity("{ \"message\" : \"Personne not found\" }")
+					.type(MediaType.APPLICATION_JSON).build();
+		}
+		
+		randoDAO.inscriptionRando(r, p);
+		return Response.status(Response.Status.OK)
+				.entity("{ \"message\" : \"Personne ajouté \"}")
+				.type(MediaType.APPLICATION_JSON).build();
+
+	}
+	
+	@POST
+	@Path("rando/{id}/desinscription/{mail}")
+	public Response desinscription(@PathParam("id") String id, @PathParam("mail") String mail) {
+		Rando r = randoDAO.getRandoById(Long.parseLong(id));
+		if (r == null) {
+			return Response.status(404).entity("{ \"message\" : \"rando not found\" }")
+					.type(MediaType.APPLICATION_JSON).build();
+		}
+		Personne p = personneDAO.getPersonByMail(mail);
+		if (p == null) {
+			return Response.status(404).entity("{ \"message\" : \"Personne not found\" }")
+					.type(MediaType.APPLICATION_JSON).build();
+		}
+		
+		randoDAO.desinscriptionRando(r, p);
+		return Response.status(Response.Status.OK)
+				.entity("{ \"message\" : \"Personne supprimé \"}")
+				.type(MediaType.APPLICATION_JSON).build();
+
 	}
 }

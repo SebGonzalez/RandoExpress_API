@@ -62,4 +62,14 @@ public class RandoDAO {
 			em.merge(r);
 		}
 	}
+	
+	public void inscriptionRando(Rando rando, Personne personne) {
+		rando.addPerson(personne);
+		save(rando);
+	}
+	
+	public void desinscriptionRando(Rando rando, Personne personne) {
+		rando.removePerson(personne);
+		save(rando);
+	}
 }

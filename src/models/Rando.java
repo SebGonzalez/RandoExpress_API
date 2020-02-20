@@ -157,10 +157,13 @@ public class Rando {
 		persons.add(p);
 	}
 	
+	public void removePerson(Personne personne) {
+		persons.remove(personne);
+	}
+	
 	@Override
 	public String toString() {
 		System.out.println("ok");
 		return id + " " + name + " " + description + " " + ville + " " + dateDepart + " " + longitude + " " + latitude + " " + persons;
 	}
-
 }

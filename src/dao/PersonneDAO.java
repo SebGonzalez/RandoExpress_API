@@ -2,15 +2,14 @@ package dao;
 
 import java.util.List;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-
-import org.hibernate.exception.ConstraintViolationException;
+import javax.persistence.PersistenceException;
 
 import models.Personne;
-import models.Rando;
 
 /**
  * Manager de l'application représenté par un EJB stateless. Contient nottemment
@@ -63,8 +62,8 @@ public class PersonneDAO {
 			} else {
 				em.merge(p);
 			}
-		} catch (ConstraintViolationException e) {
-			return false;
+		} catch (PersistenceException e) {
+			throw (EJBException) new EJBException(e).initCause(e);
 		}
 		return true;
 	}
