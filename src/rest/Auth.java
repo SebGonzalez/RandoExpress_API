@@ -47,7 +47,7 @@ public class Auth {
 				
 			}
 			return Response.status(Response.Status.OK)
-					.entity("{ \"message\" : \"Connexion validé\",  \"jwt\" : \"" + token + "\"}")
+					.entity("{ \"message\" : \"Connexion validé\",  \"jwt\" : \"" + token + "\", \"name\" :  \"" + p.getName() + "\", \"firstnName\" :  \"" + p.getFirstName() + "\", \"mail\" :  \"" + p.getMail() + "\"}")
 					.type(MediaType.APPLICATION_JSON).build();
 		}
 
