@@ -10,8 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -50,11 +50,10 @@ public class Rando {
 	@Column(nullable = false)
 	private String longitude;
 	
-	@Basic(optional = false)
-	@OneToOne
+	@ManyToOne
 	private Personne owner;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Personne> persons;
 
 	public Rando() {

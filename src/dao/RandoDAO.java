@@ -27,7 +27,7 @@ public class RandoDAO {
 	 * @return la liste des randonnées
 	 */
 	public List<Rando> getAllRandos() {
-		return em.createQuery("Select r From Rando r", Rando.class).getResultList();
+		return em.createQuery("Select r From Rando r WHERE TO_DATE(r.dateDepart, 'dd/MM/yyyy') >= CURRENT_DATE", Rando.class).getResultList();
 	}
 	
 	public Rando getRandoById(Long id) {
@@ -50,7 +50,15 @@ public class RandoDAO {
 	
 	public List<Rando> getRandosPersonne(Personne p) {
 		try {
-			return em.createQuery("Select r From Rando r Where :p MEMBER OF r.persons", Rando.class).setParameter("p", p).getResultList();
+			return em.createQuery("Select r From Rando r Where :p MEMBER OF r.persons AND TO_DATE(r.dateDepart, 'dd/MM/yyyy') >= CURRENT_DATE", Rando.class).setParameter("p", p).getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
+	public List<Rando> getRandosHistoriquePersonne(Personne p) {
+		try {
+			return em.createQuery("Select r From Rando r Where :p MEMBER OF r.persons AND TO_DATE(r.dateDepart, 'dd/MM/yyyy') < CURRENT_DATE", Rando.class).setParameter("p", p).getResultList();
 		} catch (NoResultException e) {
 			return null;
 		}
