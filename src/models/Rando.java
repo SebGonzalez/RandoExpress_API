@@ -37,6 +37,10 @@ public class Rando {
 	@Basic(optional = false)
 	@Column(nullable = false)
 	private String dateDepart;
+	
+	@Basic(optional = false)
+	@Column(nullable = false)
+	private String heureDepart;
 
 	@Basic(optional = false)
 	@Column(nullable = false)
@@ -57,12 +61,13 @@ public class Rando {
 
 	}
 
-	public Rando(String name, String description, String ville, String dateDepart, String latitude, String longitude, Personne owner) {
+	public Rando(String name, String description, String ville, String dateDepart, String heureDepart, String latitude, String longitude, Personne owner) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.ville = ville;
 		this.dateDepart = dateDepart;
+		this.heureDepart = heureDepart;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.owner = owner;
@@ -119,6 +124,14 @@ public class Rando {
 
 	public void setDateDepart(String dateDepart) {
 		this.dateDepart = dateDepart;
+	}
+
+	public String getHeureDepart() {
+		return heureDepart;
+	}
+
+	public void setHeureDepart(String heureDepart) {
+		this.heureDepart = heureDepart;
 	}
 
 	public String getLongitude() {

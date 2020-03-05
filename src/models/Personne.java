@@ -1,13 +1,16 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Personne {
@@ -26,7 +29,6 @@ public class Personne {
 	private String mail;
 	@Basic(optional = false)
 	private String password;
-	
 	
 	public Personne() {
 		
@@ -77,7 +79,7 @@ public class Personne {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	@Override
 	public String toString() {
 		return id + " " + name + " " + firstName + " " + mail ;

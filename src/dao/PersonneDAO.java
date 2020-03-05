@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import models.Personne;
+import models.Rando;
 
 /**
  * Manager de l'application représenté par un EJB stateless. Contient nottemment

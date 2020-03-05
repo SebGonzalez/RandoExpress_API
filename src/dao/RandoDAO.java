@@ -48,6 +48,14 @@ public class RandoDAO {
 		}
 	}
 	
+	public List<Rando> getRandosPersonne(Personne p) {
+		try {
+			return em.createQuery("Select r From Rando r Where :p MEMBER OF r.persons", Rando.class).setParameter("p", p).getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
 	public void remove(Long id) {
 		Rando r = getRandoById(id);
 		if(r != null)

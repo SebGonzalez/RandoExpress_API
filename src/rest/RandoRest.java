@@ -52,6 +52,21 @@ public class RandoRest {
 
 		return Response.status(404).entity("Rando not found").build();
 	}
+	
+	@GET
+	@Path("randos/person/{id}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response getRandoPersonne(@PathParam("id") String id) {
+		Personne p = personneDAO.getPersonById(Long.parseLong(id));
+		if (p == null) {
+			return Response.status(404).entity("Personne not found").build();
+		}
+
+		List<Rando> list = randoDAO.getRandosPersonne(p);
+		GenericEntity<List<Rando>> entity = new GenericEntity<List<Rando>>(list) {
+		};
+		return Response.ok(entity).build();
+	}
 
 	@POST
 	@Path("rando")
