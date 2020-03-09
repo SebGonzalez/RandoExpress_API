@@ -95,7 +95,7 @@ public class RandoRest {
 		System.out.println(r);
 		
 		return Response.status(Response.Status.OK)
-				.entity("{ \"message\" : \"Ajout rando effectuée \", \"id: " + r.getId() + "\"}")
+				.entity("{ \"message\" : \"Ajout rando effectuée \", \"id\": \"" + r.getId() + "\"}")
 				.type(MediaType.APPLICATION_JSON).build();
 	}
 
