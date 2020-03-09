@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -170,7 +171,16 @@ public class Rando {
 	}
 	
 	public void removePerson(Personne personne) {
-		persons.remove(personne);
+		System.out.println("Personne : " + persons.size() + " " + persons);
+		
+		Iterator<Personne> itr = persons.iterator(); // remove all even numbers 
+		while (itr.hasNext()) {
+			Personne p = itr.next();
+			if(p.getMail().equals(personne.getMail()))
+				itr.remove();
+		}
+
+		System.out.println("Personne2 : " + persons.size() + " " + persons);
 	}
 	
 	@Override

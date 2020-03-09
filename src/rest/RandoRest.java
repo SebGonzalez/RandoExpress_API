@@ -86,11 +86,17 @@ public class RandoRest {
 	@POST
 	@Path("rando")
 	@Consumes("application/json")
-	public void addRando(Rando r) {
+	public Response addRando(Rando r) {
 		if (r.getId() != null)
 			r.setId(null);
 		System.out.println(r);
 		randoDAO.save(r);
+		
+		System.out.println(r);
+		
+		return Response.status(Response.Status.OK)
+				.entity("{ \"message\" : \"Ajout rando effectuée \"}")
+				.type(MediaType.APPLICATION_JSON).build();
 	}
 
 	@PUT
