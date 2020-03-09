@@ -122,7 +122,7 @@ public class RandoRest {
 		
 		randoDAO.inscriptionRando(r, p);
 		return Response.status(Response.Status.OK)
-				.entity("{ \"message\" : \"Personne ajouté \"}")
+				.entity("{ \"message\" : \"Inscription effectuée \"}")
 				.type(MediaType.APPLICATION_JSON).build();
 
 	}
@@ -143,7 +143,7 @@ public class RandoRest {
 		
 		randoDAO.desinscriptionRando(r, p);
 		return Response.status(Response.Status.OK)
-				.entity("{ \"message\" : \"Personne supprimé \"}")
+				.entity("{ \"message\" : \"Désinscription effectuée \"}")
 				.type(MediaType.APPLICATION_JSON).build();
 
 	}
