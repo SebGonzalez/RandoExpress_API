@@ -27,7 +27,7 @@ public class RandoDAO {
 	 * @return la liste des randonnées
 	 */
 	public List<Rando> getAllRandos() {
-		return em.createQuery("Select r From Rando r WHERE TO_DATE(r.dateDepart, 'dd/MM/yyyy') >= CURRENT_DATE", Rando.class).getResultList();
+		return em.createQuery("Select r From Rando r WHERE TO_DATE(r.dateDepart, 'dd/MM/yyyy') >= CURRENT_DATE ORDER BY TO_DATE(r.dateDepart, 'dd/MM/yyyy')", Rando.class).getResultList();
 	}
 	
 	public Rando getRandoById(Long id) {
