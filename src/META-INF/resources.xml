@@ -4,9 +4,9 @@
 
 <Resource id="myTestDataSource" type="javax.sql.DataSource">
     JdbcDriver org.postgresql.Driver
-    JdbcUrl jdbc:postgresql://localhost:5432/postgres
-    UserName postgres
-    Password azerty
+    JdbcUrl jdbc:postgresql://ec2-176-34-97-213.eu-west-1.compute.amazonaws.com:5432/d23ha84s21vghl
+    UserName qasofzpmzwqlln
+    Password 20157e9eb858ed98da9e45f8f9754af1f580ceda74161d011d069273d9274891
     jtaManaged true
 </Resource>
 

@@ -90,7 +90,13 @@ public class PersonneRest {
     @Path("personne")
     @Consumes("application/json")
     public void editPerson(Personne p) {
-    	//personne.save(p);
+    	personne.save(p);
+    }
+    
+    @POST
+    @Path("")
+    public void changePassword() {
+    	
     }
     
     @DELETE
