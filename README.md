@@ -154,11 +154,11 @@ Randonnées :
 ```
 
 
-- GET /RandoExpress_API/ws/rest/rando/person/{id} (retourne les randonnées à venir d'une personne)
+- GET /RandoExpress_API/ws/rest/randos/person/{id} (retourne les randonnées à venir d'une personne)
 
-- GET /RandoExpress_API/ws/rest/rando/person/old/{id} (retourne les randonnées passées d'une personne)
+- GET /RandoExpress_API/ws/rest/randos/person/old/{id} (retourne les randonnées passées d'une personne)
 
-- GET /RandoExpress_API/ws/rest/rando/ville/{ville} (retourne les randonnées se situant dans la ville indiqué)
+- GET /RandoExpress_API/ws/rest/randos/ville/{ville} (retourne les randonnées se situant dans la ville indiqué)
 
 - POST /RandoExpress_API/ws/rest/rando/{id}/inscription/{mail} (inscription de la personne correspondant à l'email à la rando indiqué)
 
