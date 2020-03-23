@@ -37,11 +37,11 @@ public class InitializeListner implements ServletContextListener {
     		r1.addPerson(p2);
     		randoDAO.save(r1);
     		
-    		Rando r2 = new Rando("Randonné cool", "Magnifique randonné dans Marseille", "Marseille", "20/03/2020", "08:30", "43.288593", "5.370514", p1);
+    		Rando r2 = new Rando("Randonné cool", "Magnifique randonné dans Marseille", "Marseille", "20/04/2020", "08:30", "43.288593", "5.370514", p1);
     		randoDAO.save(r2);
     		
-    		Rando r3 = new Rando("Randonné passé", "Ce fût bien", "Marseille", "20/03/1900", "08:30", "43.288593", "5.370514", p1);
-    		r3.addPerson(p2);
+    		Rando r3 = new Rando("Randonné passé", "Ce fût bien", "Marseille", "20/03/1900", "08:30", "43.288593", "5.370514", p2);
+    		r3.addPerson(p1);
     		randoDAO.save(r3);
     		
     		

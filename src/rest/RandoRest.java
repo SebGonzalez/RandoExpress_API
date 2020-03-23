@@ -59,7 +59,7 @@ public class RandoRest {
 	public Response getRandoPersonne(@PathParam("id") String id) {
 		Personne p = personneDAO.getPersonById(Long.parseLong(id));
 		if (p == null) {
-			return Response.status(404).entity("Personne not found").build();
+			return Response.status(404).entity("{ \"message\" : \"Personne not found\" }").build();
 		}
 
 		List<Rando> list = randoDAO.getRandosPersonne(p);
@@ -74,7 +74,7 @@ public class RandoRest {
 	public Response getOldRandoPersonne(@PathParam("id") String id) {
 		Personne p = personneDAO.getPersonById(Long.parseLong(id));
 		if (p == null) {
-			return Response.status(404).entity("Personne not found").build();
+			return Response.status(404).entity("{ \"message\" : \"Personne not found\" }").build();
 		}
 
 		List<Rando> list = randoDAO.getRandosHistoriquePersonne(p);
