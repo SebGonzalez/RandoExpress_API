@@ -8,31 +8,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Personne {
+public class Admin {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@Basic(optional = false)
-	@Column(nullable = false)
-	private String name;
-	@Basic(optional = false)
-	@Column(nullable = false)
-	private String firstName;
 	@Basic(optional = false)
 	@Column(nullable = false, unique=true)
 	private String mail;
 	@Basic(optional = false)
 	private String password;
 	
-	public Personne() {
+	public Admin() {
 		
 	}
 
-	public Personne(String name, String firstName, String mail, String password) {
+	public Admin(String mail, String password) {
 		super();
-		this.name = name;
-		this.firstName = firstName;
 		this.mail = mail;
 		this.password = password;
 	}
@@ -43,20 +35,6 @@ public class Personne {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
 	}
 
 	public String getMail() {
@@ -74,10 +52,4 @@ public class Personne {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	@Override
-	public String toString() {
-		return id + " " + name + " " + firstName + " " + mail ;
-	}
-	
 }

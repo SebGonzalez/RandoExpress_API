@@ -9,8 +9,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
+import models.Admin;
 import models.Personne;
-import models.Rando;
 
 /**
  * Manager de l'application représenté par un EJB stateless. Contient nottemment
@@ -50,6 +50,15 @@ public class PersonneDAO {
 		}
 	}
 	
+	public Admin getAdminByMail(String mail) {
+		try {
+			return em.createQuery("Select a From Admin a Where mail = :mail", Admin.class)
+					.setParameter("mail", mail).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
 	public void remove(Long id) {
 		Personne p = getPersonById(id);
 		if(p != null)
@@ -62,6 +71,19 @@ public class PersonneDAO {
 				em.persist(p);
 			} else {
 				em.merge(p);
+			}
+		} catch (PersistenceException e) {
+			throw (EJBException) new EJBException(e).initCause(e);
+		}
+		return true;
+	}
+	
+	public boolean saveAdmin(Admin a) {
+		try {
+			if (a.getId() == null) {
+				em.persist(a);
+			} else {
+				em.merge(a);
 			}
 		} catch (PersistenceException e) {
 			throw (EJBException) new EJBException(e).initCause(e);

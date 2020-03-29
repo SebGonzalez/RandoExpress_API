@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebListener;
 
 import dao.PersonneDAO;
 import dao.RandoDAO;
+import models.Admin;
 import models.Personne;
 import models.Rando;
 
@@ -28,6 +29,8 @@ public class InitializeListner implements ServletContextListener {
     	if(personneDAO.getAllPersons().size() == 0) {
     		System.out.println("INITIALIZE BD");
     		
+    		Admin a1 = new Admin("admin@hotmail.fr", "azerty");
+    		personneDAO.saveAdmin(a1);
     		Personne p1 = new Personne("Lamblino", "Sébastien", "lamblino@hotmail.fr", "azerty");
     		personneDAO.save(p1);
     		Personne p2 = new Personne("Vadym", "Vadym", "vadym@android.fr", "azerty");

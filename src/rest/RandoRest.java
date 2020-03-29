@@ -38,7 +38,14 @@ public class RandoRest {
 		List<Rando> list = randoDAO.getAllRandos();
 		GenericEntity<List<Rando>> entity = new GenericEntity<List<Rando>>(list) {
 		};
-		return Response.ok(entity).build();
+		return Response.ok(entity)
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Credentials", "true")
+			      .header("Access-Control-Allow-Headers",
+			        "origin, content-type, accept, authorization")
+			      .header("Access-Control-Allow-Methods", 
+			        "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+			      .build();
 	}
 
 	@GET

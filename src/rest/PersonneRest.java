@@ -82,7 +82,7 @@ public class PersonneRest {
 					.type(MediaType.APPLICATION_JSON).build();
 		}
 		return Response.status(Response.Status.OK)
-				.entity("{ \"message\" : \"Personne ajoutée\" }")
+				.entity("{ \"message\" : \"Personne ajoutée\", \"id\" : \"" + p.getId() + "\"}")
 				.type(MediaType.APPLICATION_JSON).build();
     }
     
